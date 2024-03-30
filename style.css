@@ -73,23 +73,41 @@ main {
     flex-wrap: wrap;
 }
 
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - 120px); /* Adjust based on header height */
+    overflow: auto;
+}
+
 .movie {
-    background-color: #797979;
+    background-color: #79707079;
     border-radius: 3px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     position: relative;
     margin: 1rem;
-    width: 300px;
+    width: calc(20% - 2rem);
     transition: transform 0.3s ease-in-out;
 }
+
 
 .movie img {
     width: 100%;
 }
 
+.movie-info a {
+    text-decoration: none; /* Remove underline for movie names */
+    color: inherit; /* Inherit the color from the parent (black by default) */
+}
+
+/* Optional: Adjust the color on hover for the hyperlink */
+.movie-info a:hover {
+    color: inherit; /* Set the color of movie names in the overview on hover */
+}
+
 .movie-info {
-    color: #eee;
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -99,6 +117,8 @@ main {
 
 .movie-info h3 {
     margin: 0;
+    text-decoration: none; /* Remove underline for movie names */
+    color: inherit; /* Inherit the color from the parent (black by default) */
 }
 
 .movie-info span {
@@ -130,16 +150,89 @@ main {
     right: 0;
     transform: translateY(101%);
     transition: transform 0.3s ease-in;
+    color: #555; /* Set the color of the text in the overview */
 }
+
+/* Additional styles to set hyperlink color */
+.overview a {
+    color: #555; /* Set the color of hyperlinks in the overview */
+}
+
 
 .overview h3 {
     margin-top: 0;
 }
 
+/* Adjust existing hover styles to maintain the same appearance */
 .movie:hover .overview {
     transform: translateY(0);
+    color: #555; /* Set the color of the text in the overview on hover */
+}
+
+/* Optional: Adjust the color on hover for the hyperlink */
+.movie:hover .overview a {
+    color: #555; /* Set the color of hyperlinks in the overview on hover */
 }
 
 .movie:hover {
     transform: scale(1.10);
+}
+
+.genre {
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    background-color: #555;
+    color: #ffffff;
+
+}
+
+/* Optional: Style the dropdown arrow */
+.genre::-ms-expand {
+    display: none;
+}
+
+.genre {
+    appearance: none;
+    background-image: url('path/to/your-arrow-image.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 20px; /* Adjust as needed */
+}
+
+.left-zone,
+.right-zone {
+    height: 100%; /* Take up full height of the main container */
+    width: 50%; /* Split the main container into two equal parts */
+    background-color: #ccc; /* Grey background color */
+    position: relative; /* Positioning for arrow indicators */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.left-zone:hover,
+.right-zone:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+}
+
+.left-zone::before,
+.right-zone::before {
+    content: ''; /* Create the arrow indicators */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px; /* Adjust arrow size */
+}
+
+.left-zone::before {
+    border-color: transparent transparent transparent #000; /* Left arrow */
+    left: 10px; /* Adjust arrow position */
+}
+
+.right-zone::before {
+    border-color: transparent #000 transparent transparent; /* Right arrow */
+    right: 10px; /* Adjust arrow position */
 }
